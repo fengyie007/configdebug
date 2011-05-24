@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- struts2设置 -->
+    <constant name="struts.devMode" value="true"/>
+	<constant name="struts.action.extension" value="shtml" />
+	<constant name="struts.multipart.maxSize" value="1232342024258" />
+	<constant name="struts.multipart.saveDir" value="/tmp" />
+	<constant name="struts.enable.SlashesInActionNames" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.ui.theme" value="simple" />
+    
+	
+    <package name="common"  namespace="" extends="struts-default">
+		<interceptors>
+			<interceptor name="configdebug" class="com.configdebug.interceptor.ConfigDebugInterceptor"/>
+			<interceptor-stack name="myStack">  <!-- 定义拦截器栈 -->
+				<interceptor-ref name="configdebug" />
+				<interceptor-ref name="defaultStack" />   
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack" />  <!-- 应用拦截器栈 -->
+		
+		<global-results>
+			<result name="login">/index.jsp</result>
+			<result name="exception">/exception.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		
+		
+		<action name="user" class="com.demo.action.UserAction">
+		</action>
+		
+		<action name="userList" class="com.demo.action.UserAction" method="list">
+			<result name="success">/app/user/user_list.jsp</result>
+		</action>
+		<action name="userToAdd" class="com.demo.action.UserAction" method="toAdd">
+			<result name="success">/app/user/user_add.jsp</result>
+		</action>
+		<action name="userAdd" class="com.demo.action.UserAction" method="add">
+			<result name="success">/app/user/user_list.jsp</result>
+		</action>
+		
+	</package>
+		
+</struts>
