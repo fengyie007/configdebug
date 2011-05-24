@@ -1,0 +1,32 @@
+使用步骤
+
+基本使用
+
+1.	将jar包放入类路径中
+
+2.	在struts2的配置文件中，配置拦截器
+  注意，该拦截器最好放到最上面的位置，
+  以下两种方式任选其一
+
+  配置方式1
+<package name="common"  namespace="" extends="struts-default">
+<interceptors>
+<interceptor name="configdebug" class="com.configdebug.interceptor.ConfigDebugInterceptor"/>
+	<interceptor-stack name="myStack">
+		<interceptor-ref name="configdebug" /> 
+		<interceptor-ref name="defaultStack" />   
+	</interceptor-stack>
+</interceptors>
+<default-interceptor-ref name="myStack" />
+
+  配置方式2
+<package name="common"  namespace="" extends="configdebug">
+
+3.	自定义配置（可选）
+  新建一个属性文件，名称为configdebug.properties，并放到类路径下，在该文件中配置一些可选项（该文件中的配置项，会覆盖默认的配置项）。
+  可以没有该文件（将使用默认的设置）。
+  目前还不支持自定义属性文件的名称和位置
+
+配置项
+
+参考指南
