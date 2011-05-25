@@ -1,0 +1,5 @@
+Struts2 configdebug plugin
+Copyright 2011 shileijava
+
+This product includes software developed by
+The Apache Software Foundation (http://www.apache.org/).
