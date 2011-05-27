@@ -111,10 +111,12 @@ public class ConfigDebugInterceptor implements Interceptor {
 				ResultConfig resultConfig = null;
 				resultConfig = results.get(result);
 				if (null != resultConfig) {
-					System.out.println(tipPrefix + (i++) + "." + configFilePathTip + ":"
-							+ resultConfig.getLocation().getURI());
-					System.out.println(tipPrefix + (i++) + "." + configFileLineNumberTip + ":"
-							+ resultConfig.getLocation().getLineNumber());
+					if(null != resultConfig.getLocation()){
+						System.out.println(tipPrefix + (i++) + "." + configFilePathTip + ":"
+								+ resultConfig.getLocation().getURI());
+						System.out.println(tipPrefix + (i++) + "." + configFileLineNumberTip + ":"
+								+ resultConfig.getLocation().getLineNumber());
+					}
 					System.out.println(tipPrefix + (i++) + "." + actionReturnResultTip + ":" + resultConfig.getName());
 					System.out.println(tipPrefix + (i++) + "." + actionReturnViewTip + ":" + resultConfig.getParams());
 				} else {
