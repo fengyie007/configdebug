@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * 
  * @author sl
  * email:shileijava@sohu.com
  */
