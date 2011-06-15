@@ -223,7 +223,6 @@ public class ConfigDebugInterceptor implements Interceptor {
 				}
 			}
 		}
-		System.out.println("ddddddd:"+params.toString());
 		if(params.length() > 0){//处理post提交时，没有参数的情况，没有参数params.length()=0，那么执行params.substring(0, params.length() - 1);，就会抛出Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: -1
 			return params.substring(0, params.length() - 1);
 		}
