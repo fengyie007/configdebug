@@ -41,12 +41,15 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 @SuppressWarnings("serial")
 public class ConfigDebugInterceptor implements Interceptor {
 	private boolean devMode;// plugin switch:true(print debug info on console),false(do not print info on console)
-
+	public static String configFileLocation;
 	@Inject(StrutsConstants.STRUTS_DEVMODE)
 	public void setDevMode(String mode) {
 		this.devMode = "true".equals(mode);
 	}
 
+	public void setConfigFileLocation(String configFileLocation){
+		this.configFileLocation = configFileLocation;
+	}
 	/**
 	 * interceptor implements
 	 */
@@ -220,7 +223,11 @@ public class ConfigDebugInterceptor implements Interceptor {
 				}
 			}
 		}
-		return params.substring(0, params.length() - 1);
+		System.out.println("ddddddd:"+params.toString());
+		if(params.length() > 0){//处理post提交时，没有参数的情况，没有参数params.length()=0，那么执行params.substring(0, params.length() - 1);，就会抛出Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+			return params.substring(0, params.length() - 1);
+		}
+		return params.toString();
 	}
 
 	private String generateTip(String tipPrefix, int count) {
